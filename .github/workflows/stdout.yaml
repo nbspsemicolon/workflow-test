@@ -1,0 +1,29 @@
+---
+name: Workflow Environment
+on:
+  workflow_dispatch:
+
+jobs:
+  build_push:
+    name: Build and push image
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      # These stage versions are pinned by https://github.com/renovatebot/renovate
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Show Repos
+        run:
+          show_title() { padding=$(printf -- '-%.0s' {1..80}); printf "\n%s %s\n\n" "${PADDING:${#1}}" "$1"; }
+          show_title "Repo List"
+          ls /etc/apt/sources.list.d
+          show_title "ubuntu.sources"
+          cat /etc/apt/sources.list.d/ubuntu.sources
+          show_title  "Repo Preferences"
+          ls /etc/apt/preferences.d
