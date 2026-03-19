@@ -53,7 +53,7 @@ do_podman () {
   apt update
   apt-cache policy podman
 
-  apt upgrade
+  apt upgrade podman
 }
 
 
