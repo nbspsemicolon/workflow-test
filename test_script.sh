@@ -25,7 +25,7 @@ do_info () {
   podman info
 }
 
-do_podman () {
+do_apt () {
   show_title "Modify apt"
   sed -i \
     '/noble-backports/s/$/ contrib questing/' \
@@ -53,8 +53,12 @@ do_podman () {
   apt update
   apt-cache policy podman
 
-  apt upgrade podman
+  apt install podman --only-upgrade
 }
 
+do_podman () {
+  show_title "NEW Podman Info"
+  podman info
+}
 
 do_$1
