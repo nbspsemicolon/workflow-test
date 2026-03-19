@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_push:
-    name: Build and push image
+  test_scripts:
+    name: Test Scripts
     runs-on: ubuntu-24.04
 
     permissions:
@@ -18,13 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
-      - name: Show Repos
+      - name: Run Test Script
         run:
-          printenv | sort
-          show_title () { padding=$(printf -- '-%.0s' {1..80}); printf "\n%s %s\n\n" "${PADDING:${#1}}" "$1"; }
-          show_title "Repo List"
-          ls /etc/apt/sources.list.d
-          show_title "ubuntu.sources"
-          cat /etc/apt/sources.list.d/ubuntu.sources
-          show_title  "Repo Preferences"
-          ls /etc/apt/preferences.d
+          ./test_script.sh
