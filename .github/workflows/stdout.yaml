@@ -20,7 +20,7 @@ jobs:
 
       - name: Show Repos
         run:
-          show_title() { padding=$(printf -- '-%.0s' {1..80}); printf "\n%s %s\n\n" "${PADDING:${#1}}" "$1"; }
+          show_title () { padding=$(printf -- '-%.0s' {1..80}); printf "\n%s %s\n\n" "${PADDING:${#1}}" "$1"; }
           show_title "Repo List"
           ls /etc/apt/sources.list.d
           show_title "ubuntu.sources"
