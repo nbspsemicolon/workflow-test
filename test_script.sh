@@ -1,11 +1,13 @@
 #!/usr/bin/bash
 
 show_title () { 
-  padding=$(printf -- '-%.0s' {1..80});
-  printf "\n%s %s\n\n" "${padding:${#1}}" "$1"; 
+  padding=$(printf -- '-%.0s' {1..97});
+  printf "\n\n@@%s\n" ''
+  printf "@@ %s %s\n" "${padding:${#1}}" "$1"; 
+  printf "@@ %s\n\n" ''
 }
 
-show_title "printenv"
+show_title "Printenv"
 printenv | sort
 
 show_title "Repo List"
@@ -16,3 +18,6 @@ cat /etc/apt/sources.list.d/ubuntu.sources
 
 show_title  "Repo Preferences"
 ls /etc/apt/preferences.d
+
+show_title "Podman Info"
+podman info
