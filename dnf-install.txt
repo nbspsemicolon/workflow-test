@@ -1,0 +1,10 @@
+# networking
+systemd-networkd
+systemd-networkd-defaults
+libvirt
+
+# qol
+bat
+ncdu
+yq
+

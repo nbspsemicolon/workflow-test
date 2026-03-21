@@ -7,10 +7,24 @@ show_title () {
   printf "@@ %s\n\n" ''
 }
 
+assert_ubuntu () {
+  { grep -cs "ubuntu" /etc/os-release > /dev/null; } || { 
+    show_title "${1-SKIPPING}"
+    exit
+  }
+}
 
 do_info () {
+  show_title "Find Just"
+  whereis just
+
+  show_title "Find yq"
+  whereis yq
+
   show_title "Printenv"
   printenv | sort
+
+  assert_ubuntu "SKIPPING: Inspect apt: not ubuntu runner"
 
   show_title "Repo List"
   ls /etc/apt/sources.list.d
@@ -26,9 +40,11 @@ do_info () {
 }
 
 do_apt () {
+  assert_ubuntu "SKIPPING: Modify apt: Not ubuntu runner"
+
   show_title "Modify apt"
   sed -i \
-    '/noble-backports/s/$/ contrib questing/' \
+    '/noble-backports/s/$/ questing/' \
     /etc/apt/sources.list.d/ubuntu.sources
 
   cat /etc/apt/sources.list.d/ubuntu.sources
@@ -38,7 +54,7 @@ do_apt () {
     "Pin: release n=questing"
     "Pin-Priority: 991"
     ""
-    "Package: libsubid4 netavark passt aardvark-dns containernetworking-plugins libslirp0 slirp4netns"
+    "Package: libsubid4 netavark passt aardvark-dns containernetworking-plugins libslirp0 slirp4netns libprotobuf32t64 python3-protobuf libnet1"
     "Pin: release n=questing"
     "Pin-Priority: 991"
     ""
