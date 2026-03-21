@@ -16,7 +16,7 @@ assert_ubuntu () {
 
 do_info () {
   show_title "Find make"
-  whereis just
+  whereis make
 
   show_title "yq version"
   yq --version
