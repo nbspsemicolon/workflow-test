@@ -15,11 +15,11 @@ assert_ubuntu () {
 }
 
 do_info () {
-  show_title "Find Just"
+  show_title "Find make"
   whereis just
 
-  show_title "Find yq"
-  whereis yq
+  show_title "yq version"
+  yq --version
 
   show_title "Printenv"
   printenv | sort
